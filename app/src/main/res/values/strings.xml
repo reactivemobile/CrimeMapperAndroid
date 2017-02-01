@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Crime Mapper</string>
+
+    <string name="disclaimer">The data in this application is provided \'as is\' and Reactive Mobile excludes all representations, warranties, obligations and liabilities in relation to the data to the maximum extent permitted by law.\n\nReactive Mobile is not liable for any errors or omissions in the data or its presentation and shall not be liable for any loss, injury or damage of any kind caused by its use.\n\nData about crime and policing is only available for England, Wales and Northern Ireland.</string>
+    <string name="use_my_current_location">Show crimes around me</string>
+    <string name="no_outcome_available">No outcome available</string>
+    <string name="category">Category: %s</string>
+    <string name="i_agree">I agree</string>
+    <string name="crime_mapper">Crime Mapper</string>
+    <string name="toggle_heat_map">Toggle heatmap</string>
+    <string name="refresh_crime_data">Refresh crime data</string>
+    <string name="getting_availability">Getting availability</string>
+    <string name="getting_crimes_for_location">Getting crimes for this location</string>
+    <string name="getting_categories">Getting Categories</string>
+    <string name="error_getting_dates">Error getting availability dates</string>
+    <string name="error_getting_crimes">Error getting crime data</string>
+    <string name="no_data_for_location">No data for this location</string>
+    <string name="error_getting_categories">Error getting category data</string>
+</resources>

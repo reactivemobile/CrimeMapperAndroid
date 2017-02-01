@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/main_foreground</item>
+        <item name="android:colorBackground">@color/main_background</item>
+        <item name="android:windowBackground">@color/main_background</item>
+        <item name="android:textColorSecondaryInverse">@color/main_background</item>
+    </style>
+
+
+</resources>

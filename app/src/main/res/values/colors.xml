@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="progress_bar_background">#55000000</color>
+    <color name="main_background">#cfd8dc</color>
+    <color name="light_background">#ffffff</color>
+    <color name="main_foreground">#0091ea</color>
+</resources>

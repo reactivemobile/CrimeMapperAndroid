@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="component_margin">16dip</dimen>
+    <dimen name="fragment_margin">48dip</dimen>
+    <dimen name="font_size_title_0">32sp</dimen>
+    <dimen name="button_outline_width">1dp</dimen>
+    <dimen name="button_corner_radius">10dp</dimen>
+</resources>
