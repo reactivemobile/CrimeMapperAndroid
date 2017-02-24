@@ -10,9 +10,12 @@ import java.util.HashMap;
 
 import javax.inject.Inject;
 
-import retrofit.RestAdapter;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 /**
  * Presenter implementing MapPresenterContract functionality
@@ -31,11 +34,13 @@ class MapPresenter implements MapContract.MapPresenterContract {
 
     MapPresenter(MapContract.MapViewContract view) {
         this.mView = view;
-        RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(BuildConfig.BASE_URL).build();
-        if (BuildConfig.DEBUG) {
-            restAdapter.setLogLevel(RestAdapter.LogLevel.FULL);
-        }
-        mRestInterface = restAdapter.create(RestInterface.class);
+        Retrofit retrofit = new Retrofit.Builder().
+                baseUrl(BuildConfig.BASE_URL).
+                addConverterFactory(GsonConverterFactory.create()).
+                addCallAdapterFactory(RxJava2CallAdapterFactory.create()).
+                build();
+
+        mRestInterface = retrofit.create(RestInterface.class);
     }
 
     @Override
@@ -58,8 +63,8 @@ class MapPresenter implements MapContract.MapPresenterContract {
         mRestInterface.getStreetLevelAvailability().
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
-                doOnNext((this::streetLevelAvailabilityDatesRetrievedOk)).
-                doOnError((throwable -> mView.streetLevelAvailabilityDatesRetrievedError(throwable.getCause()))).
+                doOnNext(this::streetLevelAvailabilityDatesRetrievedOk).
+                doOnError(throwable -> mView.streetLevelAvailabilityDatesRetrievedError(throwable.getCause())).
                 subscribe();
     }
 
@@ -73,7 +78,8 @@ class MapPresenter implements MapContract.MapPresenterContract {
                 observeOn(AndroidSchedulers.mainThread()).
                 flatMapIterable((crimeCategories) -> crimeCategories).
                 doOnNext(crimeCategory -> mCategoryMap.put(crimeCategory.getUrl(), crimeCategory.getName())).
-                doOnCompleted(mView::crimeCategoriesRetrievedOk).
+                doOnComplete(mView::crimeCategoriesRetrievedOk).
+                doOnError(throwable -> mView.streetLevelCrimesRetrievedError(throwable.getCause())).
                 subscribe();
     }
 

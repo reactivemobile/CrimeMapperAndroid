@@ -33,15 +33,15 @@ public class WelcomeFragment extends Fragment implements WelcomeContract.Welcome
 
         mUnbinder = ButterKnife.bind(this, rootView);
 
-        CheckBox disclaimer_checkbox = ButterKnife.findById(rootView, R.id.checkbox_disclaimer);
+        CheckBox disclaimerCheckbox = ButterKnife.findById(rootView, R.id.checkbox_disclaimer);
         final View proceedButton = ButterKnife.findById(rootView, R.id.button_use_current_location);
 
-        disclaimer_checkbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        disclaimerCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             proceedButton.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
             mWelcomePresenter.saveDisclaimerState(isChecked);
         });
 
-        disclaimer_checkbox.setChecked(mWelcomePresenter.isDisclaimerAccepted());
+        disclaimerCheckbox.setChecked(mWelcomePresenter.isDisclaimerAccepted());
 
         return rootView;
     }

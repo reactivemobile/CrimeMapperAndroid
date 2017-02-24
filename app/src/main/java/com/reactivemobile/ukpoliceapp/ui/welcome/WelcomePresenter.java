@@ -13,8 +13,7 @@ import javax.inject.Inject;
 public class WelcomePresenter implements WelcomeContract.WelcomePresenterContract {
 
     private static final String DISCLAIMER_KEY = "DISCLAIMER_KEY";
-    private WelcomeContract.WelcomeViewContract mView;
-
+    
     @Inject
     Utils mUtils;
 
