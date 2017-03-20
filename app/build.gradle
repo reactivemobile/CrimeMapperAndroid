@@ -4,6 +4,10 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
 
+    configure(android.lintOptions) {
+        abortOnError false
+    }
+
     defaultConfig {
         applicationId "com.reactivemobile.ukpoliceapp"
         minSdkVersion 21
