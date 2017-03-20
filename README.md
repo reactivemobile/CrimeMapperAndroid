@@ -1,6 +1,6 @@
 # CrimeMapper
 
-This is [a simple application](https://play.google.com/store/apps/details?id=com.reactivemobile.ukpoliceapp) for downloading and displaying crime report data from the UK Police 
+This is [a simple android application](https://play.google.com/store/apps/details?id=com.reactivemobile.ukpoliceapp) for downloading and displaying crime report data from the UK Police 
 See https://data.police.uk/ for API documentation
 
 The app is built using MVP principles with some help from 
