@@ -4,6 +4,10 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
 
+    configure(android.lintOptions) {
+        abortOnError false
+    }
+
     defaultConfig {
         applicationId "com.reactivemobile.ukpoliceapp"
         minSdkVersion 21
@@ -28,11 +32,11 @@ android {
     }
 
     buildTypes {
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
-        }
+//        release {
+//            minifyEnabled true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.config
+//        }
         debug {
             debuggable true
         }
@@ -51,7 +55,7 @@ android {
 ext {
     permissiondispatcher_version = '2.3.1'
     butterknife_version = '8.5.1'
-    androidSupportVersion = '25.2.0'
+    androidSupportVersion = '25.3.0'
     playServicesVersion = '10.2.0'
     retrofitVersion = '2.2.0'
     gsonVersion = '2.4'
