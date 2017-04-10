@@ -1,4 +1,4 @@
-# CrimeMapper [![Build Status](https://travis-ci.org/reactivemobile/CrimeMapper.svg?branch=master)](https://travis-ci.org/reactivemobile/CrimeMapper)
+# CrimeMapper [![Build Status](https://travis-ci.org/reactivemobile/CrimeMapperAndroid.svg?branch=master)](https://travis-ci.org/reactivemobile/CrimeMapperAndroid)
 
 This is [a simple android application](https://play.google.com/store/apps/details?id=com.reactivemobile.ukpoliceapp) for downloading and displaying crime report data from the UK Police 
 See https://data.police.uk/ for API documentation
