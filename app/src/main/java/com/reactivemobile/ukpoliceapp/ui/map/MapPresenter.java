@@ -4,11 +4,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.reactivemobile.ukpoliceapp.BuildConfig;
 import com.reactivemobile.ukpoliceapp.objects.StreetLevelAvailabilityDates;
 import com.reactivemobile.ukpoliceapp.rest.RestInterface;
-import com.reactivemobile.ukpoliceapp.utils.Utils;
 
 import java.util.HashMap;
-
-import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -24,9 +21,6 @@ class MapPresenter implements MapContract.MapPresenterContract {
     private final MapContract.MapViewContract mView;
 
     private final RestInterface mRestInterface;
-
-    @Inject
-    Utils mUtils;
 
     private StreetLevelAvailabilityDates mStreetLevelAvailabilityDates;
 
