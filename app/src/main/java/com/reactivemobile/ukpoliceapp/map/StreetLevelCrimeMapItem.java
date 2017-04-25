@@ -43,6 +43,11 @@ public class StreetLevelCrimeMapItem implements ClusterItem {
     }
 
     @Override
+    public String getSnippet() {
+        return null;
+    }
+
+    @Override
     public String toString() {
         return title;
     }
