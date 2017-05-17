@@ -1,8 +1,16 @@
 apply plugin: 'com.android.application'
 
-def keystorePropertiesFile = rootProject.file("keys.properties")
+
+def keystorePropertiesFile
 def signingProperties = new Properties()
-signingProperties.load(new FileInputStream(keystorePropertiesFile))
+
+try {
+    keystorePropertiesFile = rootProject.file("keys.properties")
+    signingProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+catch (Exception e) {
+    e.printStackTrace()
+}
 
 android {
     compileSdkVersion 25
@@ -40,6 +48,7 @@ android {
             signingConfig signingConfigs.config
         }
         debug {
+            applicationIdSuffix ".debug"
             debuggable true
         }
     }
