@@ -3,13 +3,16 @@ apply plugin: 'com.android.application'
 
 def keystorePropertiesFile
 def signingProperties = new Properties()
+def keystorePath
 
 try {
     keystorePropertiesFile = rootProject.file("keys.properties")
     signingProperties.load(new FileInputStream(keystorePropertiesFile))
+    keystorePath = signingProperties['storeFile']
 }
 catch (Exception e) {
     e.printStackTrace()
+    keystorePath = "none"
 }
 
 android {
@@ -34,7 +37,7 @@ android {
     signingConfigs {
         release
         config {
-            storeFile file(signingProperties['storeFile'])
+            storeFile file(keystorePath)
             storePassword signingProperties['storePassword']
             keyAlias signingProperties['keyAlias']
             keyPassword signingProperties['keyPassword']
