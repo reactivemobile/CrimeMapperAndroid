@@ -27,8 +27,11 @@ android {
         applicationId "com.reactivemobile.ukpoliceapp"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 3
-        versionName "0.0.3"
+        versionCode 4
+        versionName "0.0.4"
+        jackOptions {
+            enabled true
+        }
 
         multiDexEnabled true
         buildConfigField "String", "BASE_URL", "\"http://data.police.uk/api/\""
@@ -56,8 +59,13 @@ android {
         }
     }
 
-    android.compileOptions.sourceCompatibility 1.8
-    android.compileOptions.targetCompatibility 1.8
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+  //  android.compileOptions.sourceCompatibility 1.8
+  //  android.compileOptions.targetCompatibility 1.8
 
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
