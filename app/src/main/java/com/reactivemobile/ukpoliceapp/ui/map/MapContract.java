@@ -35,5 +35,7 @@ public class MapContract {
         StreetLevelAvailabilityDates getStreetLevelAvailabilityDates();
 
         HashMap<String, String> getCrimeCategoryMap();
+
+        void setView(MapViewContract viewContract);
     }
 }

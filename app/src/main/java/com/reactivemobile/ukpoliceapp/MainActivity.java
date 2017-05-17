@@ -5,6 +5,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -18,13 +19,14 @@ import butterknife.Unbinder;
 import timber.log.Timber;
 
 public class MainActivity extends FragmentActivity {
-
-    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9090;
+    public static final String DISCLAIMER_KEY = "KEY";
 
     @BindView(R.id.fragment_holder)
     View mRootView;
 
     private Unbinder mUnbinder;
+
+    private boolean disclaimerAccepted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +38,21 @@ public class MainActivity extends FragmentActivity {
 
         setContentView(R.layout.activity_main);
         mUnbinder = ButterKnife.bind(this);
-        showFragment(WelcomeFragment.TAG);
+        if (savedInstanceState != null && savedInstanceState.getBoolean(DISCLAIMER_KEY, false)) {
+            showMap();
+        } else {
+            disclaimerAccepted = true;
+            showFragment(WelcomeFragment.TAG);
+        }
     }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean(DISCLAIMER_KEY, disclaimerAccepted);
+        super.onSaveInstanceState(outState);
+    }
+
 
     @Override
     protected void onDestroy() {
@@ -50,6 +65,8 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void showFragment(String fragmentTag) {
+        Log.e("XXX", "Showing " + fragmentTag);
+        Thread.dumpStack();
         Timber.d("Showing fragment %s", fragmentTag);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Fragment previous = getSupportFragmentManager().findFragmentByTag(fragmentTag);
@@ -65,6 +82,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     public void showMap() {
+        disclaimerAccepted = true;
         showFragment(MapFragment.TAG);
     }
 
