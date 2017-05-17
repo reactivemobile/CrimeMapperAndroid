@@ -16,9 +16,9 @@
     <application
         android:name=".UKPoliceAppApplication"
         android:allowBackup="true"
-        android:theme="@style/AppTheme"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name">
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -28,6 +28,7 @@
 
         <activity
             android:name=".MainActivity"
+            android:configChanges="orientation"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,9 +37,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.google.android.gms.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
     </application>
 
 </manifest>

@@ -107,7 +107,11 @@ public class MapFragment extends Fragment implements MapContract.MapViewContract
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_crime_map, container, false);
         mUnbinder = ButterKnife.bind(this, mRootView);
-        mPresenter = new MapPresenter(this);
+        if (mPresenter == null) {
+            mPresenter = new MapPresenter(this);
+        } else {
+            mPresenter.setView(this);
+        }
         setupMap();
         setupGoogleApiClient();
         ((UKPoliceAppApplication) getActivity().getApplication()).getDaggerComponent().inject(this);
