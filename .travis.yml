@@ -19,3 +19,5 @@ android:
 env:
   global:
     - GRADLE_OPTS="-Xms128m -Xmx512m -XX:MaxPermSize=512m"
+
+script: ./gradlew build
