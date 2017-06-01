@@ -28,7 +28,7 @@ public class MapContract {
     public interface MapPresenterContract {
         void viewIsReady();
 
-        void getCrimesForLocationAndDate(LatLng location, String date);
+        void getCrimesForLocationAndDate(double latitude, double longitude, String date);
 
         void getCrimeAvailability();
 
