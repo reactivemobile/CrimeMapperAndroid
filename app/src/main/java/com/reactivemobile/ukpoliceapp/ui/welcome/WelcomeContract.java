@@ -5,11 +5,11 @@ package com.reactivemobile.ukpoliceapp.ui.welcome;
  */
 class WelcomeContract {
     interface WelcomeViewContract {
+        void disclaimerAccepted(boolean isAccepted);
     }
 
     interface WelcomePresenterContract {
-        void saveDisclaimerState(boolean disclaimerAccepted);
+        void setDisclaimerAccepted(boolean isAccepted);
 
-        boolean isDisclaimerAccepted();
     }
 }

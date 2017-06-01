@@ -15,7 +15,7 @@ public class UtilsModule {
     private final Utils mUtils;
 
     public UtilsModule(Context context) {
-        mUtils = new Utils(context);
+        mUtils = new Utils();
     }
 
     @Provides
