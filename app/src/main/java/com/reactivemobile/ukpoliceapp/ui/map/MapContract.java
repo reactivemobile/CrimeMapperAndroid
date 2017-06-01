@@ -10,8 +10,8 @@ import java.util.HashMap;
 /**
  * Contract defining the MVP interfaces for the map feature
  */
-public class MapContract {
-    public interface MapViewContract {
+public interface MapContract {
+    interface MapViewContract {
         void streetLevelAvailabilityDatesRetrievedOk(StreetLevelAvailabilityDates streetLevelAvailabilityDates);
 
         void streetLevelAvailabilityDatesRetrievedError(Throwable cause);
@@ -25,7 +25,7 @@ public class MapContract {
         void crimeCategoriesRetrievedError(Throwable cause);
     }
 
-    public interface MapPresenterContract {
+    interface MapPresenterContract {
         void viewIsReady();
 
         void getCrimesForLocationAndDate(double latitude, double longitude, String date);
