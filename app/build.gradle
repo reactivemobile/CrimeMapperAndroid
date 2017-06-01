@@ -23,6 +23,10 @@ android {
         abortOnError false
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
     defaultConfig {
         applicationId "com.reactivemobile.ukpoliceapp"
         minSdkVersion 21
@@ -113,4 +117,12 @@ dependencies {
     provided "javax.annotation:jsr250-api:$javaxAnnotationsVersion"
     compile "org.parceler:parceler-api:$parcelerVersion"
     annotationProcessor "org.parceler:parceler:$parcelerVersion"
+
+    // ... more entries
+    testCompile 'junit:junit:4.12'
+
+    // required if you want to use Mockito for unit tests
+    testCompile 'org.mockito:mockito-core:2.7.22'
+    // required if you want to use Mockito for Android tests
+    androidTestCompile 'org.mockito:mockito-android:2.7.22'
 }

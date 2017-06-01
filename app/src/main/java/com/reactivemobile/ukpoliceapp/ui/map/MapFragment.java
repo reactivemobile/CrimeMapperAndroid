@@ -33,6 +33,7 @@ import com.google.maps.android.clustering.view.ClusterRenderer;
 import com.google.maps.android.heatmaps.HeatmapTileProvider;
 import com.nhaarman.supertooltips.ToolTip;
 import com.nhaarman.supertooltips.ToolTipRelativeLayout;
+import com.reactivemobile.ukpoliceapp.BuildConfig;
 import com.reactivemobile.ukpoliceapp.MainActivity;
 import com.reactivemobile.ukpoliceapp.R;
 import com.reactivemobile.ukpoliceapp.UKPoliceAppApplication;
@@ -40,6 +41,7 @@ import com.reactivemobile.ukpoliceapp.map.PoliceClusterRenderer;
 import com.reactivemobile.ukpoliceapp.map.StreetLevelCrimeMapItem;
 import com.reactivemobile.ukpoliceapp.objects.StreetLevelAvailabilityDates;
 import com.reactivemobile.ukpoliceapp.objects.StreetLevelCrime;
+import com.reactivemobile.ukpoliceapp.rest.RestInterface;
 import com.reactivemobile.ukpoliceapp.utils.Utils;
 
 import org.parceler.Parcels;
@@ -60,6 +62,9 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
 /**
@@ -108,7 +113,14 @@ public class MapFragment extends Fragment implements MapContract.MapViewContract
         mRootView = inflater.inflate(R.layout.fragment_crime_map, container, false);
         mUnbinder = ButterKnife.bind(this, mRootView);
         if (mPresenter == null) {
-            mPresenter = new MapPresenter(this);
+            Retrofit retrofit = new Retrofit.Builder().
+                    baseUrl(BuildConfig.BASE_URL).
+                    addConverterFactory(GsonConverterFactory.create()).
+                    addCallAdapterFactory(RxJava2CallAdapterFactory.create()).
+                    build();
+            // TODO Inject
+            RestInterface restInterface = retrofit.create(RestInterface.class);
+            mPresenter = new MapPresenter(this, restInterface);
         } else {
             mPresenter.setView(this);
         }
@@ -183,7 +195,8 @@ public class MapFragment extends Fragment implements MapContract.MapViewContract
             ((MainActivity) getActivity()).showMessage(getString(R.string.getting_crimes_for_location));
             int selectedItemIndex = Math.max(mDateSpinner.getSelectedItemPosition(), 0);
             String date = mPresenter.getStreetLevelAvailabilityDates().get(selectedItemIndex).getDate();
-            mPresenter.getCrimesForLocationAndDate(mGoogleMap.getCameraPosition().target, date);
+            LatLng location = mGoogleMap.getCameraPosition().target;
+            mPresenter.getCrimesForLocationAndDate(location.latitude, location.longitude, date);
         }
     }
 

@@ -2,6 +2,8 @@ package com.reactivemobile.ukpoliceapp.ui.map;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.reactivemobile.ukpoliceapp.BuildConfig;
+import com.reactivemobile.ukpoliceapp.objects.CrimeCategories;
+import com.reactivemobile.ukpoliceapp.objects.CrimeCategory;
 import com.reactivemobile.ukpoliceapp.objects.StreetLevelAvailabilityDates;
 import com.reactivemobile.ukpoliceapp.objects.StreetLevelCrime;
 import com.reactivemobile.ukpoliceapp.rest.RestInterface;
@@ -9,6 +11,8 @@ import com.reactivemobile.ukpoliceapp.rest.RestInterface;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
@@ -20,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Presenter implementing MapPresenterContract functionality
  */
-class MapPresenter implements MapContract.MapPresenterContract {
+public class MapPresenter implements MapContract.MapPresenterContract {
     private MapContract.MapViewContract mView;
 
     private final RestInterface mRestInterface;
@@ -29,15 +33,9 @@ class MapPresenter implements MapContract.MapPresenterContract {
 
     private HashMap<String, String> mCategoryMap;
 
-    MapPresenter(MapContract.MapViewContract view) {
+    public MapPresenter(MapContract.MapViewContract view, RestInterface restInterface) {
         this.mView = view;
-        Retrofit retrofit = new Retrofit.Builder().
-                baseUrl(BuildConfig.BASE_URL).
-                addConverterFactory(GsonConverterFactory.create()).
-                addCallAdapterFactory(RxJava2CallAdapterFactory.create()).
-                build();
-
-        mRestInterface = retrofit.create(RestInterface.class);
+        this.mRestInterface = restInterface;
     }
 
     @Override
@@ -46,10 +44,10 @@ class MapPresenter implements MapContract.MapPresenterContract {
     }
 
     @Override
-    public void getCrimesForLocationAndDate(LatLng location, String date) {
+    public void getCrimesForLocationAndDate(double latitude, double longitude, String date) {
         Function<? super Throwable, ? extends ArrayList<StreetLevelCrime>> emptyData = (Function<Throwable, ArrayList<StreetLevelCrime>>) throwable -> null;
 
-        mRestInterface.getStreetLevelCrimes(String.valueOf(location.latitude), String.valueOf(location.longitude), date).
+        mRestInterface.getStreetLevelCrimes(String.valueOf(latitude), String.valueOf(longitude), date).
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
                 doOnNext(mView::streetLevelCrimesRetrievedOk).

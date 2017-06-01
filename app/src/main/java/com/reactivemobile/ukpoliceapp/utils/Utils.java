@@ -1,23 +1,16 @@
 package com.reactivemobile.ukpoliceapp.utils;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.Cluster;
 import com.reactivemobile.ukpoliceapp.map.StreetLevelCrimeMapItem;
 
 import java.util.Collection;
 
+/**
+ * Created by donalocallaghan on 01/06/2017.
+ */
+
 public class Utils {
-
-    private static final String PREFERENCES_NAME = "POLICE_APP";
-    private final Context mContext;
-
-    public Utils(Context mContext) {
-        this.mContext = mContext;
-    }
-
     public boolean allItemsAtSameLocation(Cluster<StreetLevelCrimeMapItem> streetLevelCrimeMapItemCluster) {
         Collection<StreetLevelCrimeMapItem> items = streetLevelCrimeMapItemCluster.getItems();
 
@@ -35,17 +28,5 @@ public class Utils {
         }
 
         return true;
-    }
-
-    public void saveBoolean(String key, boolean value) {
-        SharedPreferences sharedPref = mContext.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean(key, value);
-        editor.apply();
-    }
-
-    public boolean loadBoolean(String key, boolean defValue) {
-        SharedPreferences sharedPref = mContext.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
-        return sharedPref.getBoolean(key, defValue);
     }
 }
