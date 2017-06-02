@@ -13,6 +13,9 @@ The app is built using MVP principles with some help from
 - [Timber](https://github.com/JakeWharton/timber)
 - [Butterknife](http://jakewharton.github.io/butterknife)
 - [Supertooltips](https://github.com/nhaarman/supertooltips)
+
+Unit testing is carried out using JUnit and Mockito
+
 - [Mockito](http://site.mockito.org/)
 
 To enable Google Maps in the application please add your [maps api key](https://developers.google.com/maps/android/) to the *api-keys.xml* file
