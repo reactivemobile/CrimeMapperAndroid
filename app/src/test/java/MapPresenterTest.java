@@ -1,7 +1,6 @@
 import com.reactivemobile.ukpoliceapp.objects.CrimeCategories;
 import com.reactivemobile.ukpoliceapp.objects.StreetLevelAvailabilityDate;
 import com.reactivemobile.ukpoliceapp.objects.StreetLevelAvailabilityDates;
-import com.reactivemobile.ukpoliceapp.objects.StreetLevelCrime;
 import com.reactivemobile.ukpoliceapp.rest.RestInterface;
 import com.reactivemobile.ukpoliceapp.ui.map.MapFragment;
 import com.reactivemobile.ukpoliceapp.ui.map.MapPresenter;
